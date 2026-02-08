@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import ModalContext from "./components/ModalContext";
 import Header from "./components/Header";
 import Cart from "./components/Cart";

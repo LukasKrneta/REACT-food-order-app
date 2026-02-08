@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 
 import ModalButtons from "./ModalButtons";
 
+// eslint-disable-next-line react/prop-types
 export default function Modal({ children, isOpen, buttonText, isOkay }) {
   const { modalDispatch } = useContext(CartContext);
   const modalRef = useRef();
@@ -35,7 +36,7 @@ export default function Modal({ children, isOpen, buttonText, isOkay }) {
               />
             </div>
           </dialog>,
-          document.getElementById("modal")
+          document.getElementById("modal"),
         )}
     </>
   );
