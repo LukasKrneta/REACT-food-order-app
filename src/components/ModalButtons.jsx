@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import TextButton from "./TextButton";
 import Button from "./Button";
 
