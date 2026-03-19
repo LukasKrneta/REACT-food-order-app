@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
 
+import { CartContext } from "./ModalContext";
 import Modal from "./Modal";
 
-//ovo se otvara iz form componenta
 export default function ConfirmationModal() {
-  const [cartOpen, setCartOpen] = useState(false);
+  const { modalState, modalDispatch } = useContext(CartContext);
 
   return (
     <Modal
-      isOpen={cartOpen}
-      setIsopen={setCartOpen}
+      isOpen={modalState.isConfirmOpen}
       buttonText="Okay"
+      onClose={() => modalDispatch({ type: "CONFIRM_CLOSE" })}
       isOkay={true}
     >
       <h2>Success!</h2>

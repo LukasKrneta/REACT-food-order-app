@@ -1,11 +1,18 @@
+/* eslint-disable react/prop-types */
 import { CartContext } from "./ModalContext";
 import { useRef, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
 
 import ModalButtons from "./ModalButtons";
 
-// eslint-disable-next-line react/prop-types
-export default function Modal({ children, isOpen, buttonText, isOkay }) {
+export default function Modal({
+  children,
+  isOpen,
+  buttonText,
+  isOkay,
+  onClose,
+  onConfirm,
+}) {
   const { modalDispatch } = useContext(CartContext);
   const modalRef = useRef();
 
@@ -17,20 +24,25 @@ export default function Modal({ children, isOpen, buttonText, isOkay }) {
     }
   }, [isOpen]);
 
-  function handleCartClosing() {
+  function handleModalClosing() {
+    if (onClose) {
+      onClose();
+      return;
+    }
+
     modalDispatch({ type: "CART_CLOSE" });
   }
 
   return (
     <>
-      {/* mozda dodat is contexta */}
       {isOpen &&
         createPortal(
-          <dialog className="modal" ref={modalRef} onClose={handleCartClosing}>
+          <dialog className="modal" ref={modalRef} onClose={handleModalClosing}>
             <div className="cart">
               {children}
               <ModalButtons
-                onClick={handleCartClosing}
+                onClose={handleModalClosing}
+                onConfirm={onConfirm}
                 buttonText={buttonText}
                 isOkay={isOkay}
               />

@@ -2,17 +2,21 @@
 import TextButton from "./TextButton";
 import Button from "./Button";
 
-export default function ModalButtons({ onClick, buttonText, isOkay }) {
+export default function ModalButtons({
+  onClose,
+  onConfirm,
+  buttonText,
+  isOkay,
+}) {
   return (
     <div className="modal-actions">
       {!isOkay ? (
         <>
-          <TextButton onClick={onClick}>Close</TextButton>
-          <Button>{buttonText}</Button>
-          {/* treba stavit functionality ovdje u <Button>? */}
+          <TextButton onClick={onClose}>Close</TextButton>
+          <Button onClick={onConfirm}>{buttonText}</Button>
         </>
       ) : (
-        <Button onClick={onClick}>{buttonText}</Button>
+        <Button onClick={onClose}>{buttonText}</Button>
       )}
     </div>
   );
